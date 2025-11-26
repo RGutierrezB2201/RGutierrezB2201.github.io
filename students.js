@@ -1,17 +1,18 @@
 const students = [
     {
         name: "Rodrigo (Profesor)",
-        botName: "Cheticus",
-        description: "Un asistente experto en IA y Python enfocado en la enseñanza académica.",
-        link: "https://poe.com/Cheticus",
-        image: "" // Opcional: URL de imagen
+        botName: "Asistente del Curso",
+        description: "Bot oficial de Chatbase para demostración.",
+        // OJO: Aquí va la URL del iframe, NO la del sitio web
+        embedUrl: "https://www.chatbase.co/chatbot-iframe/TU_ID_DE_CHATBASE", 
+        image: "" 
     },
     {
         name: "Alumno Ejemplo",
-        botName: "MathBot 3000",
-        description: "Ayuda a resolver integrales y derivadas paso a paso.",
-        link: "https://poe.com/MathBotExample",
+        botName: "Tutor de Python",
+        description: "Ayuda con sintaxis básica.",
+        embedUrl: "https://www.chatbase.co/chatbot-iframe/ID_DEL_ALUMNO",
         image: "" 
     },
-    // Los alumnos agregarán sus bloques aquí abajo
+    // Nuevos alumnos aquí...
 ];
