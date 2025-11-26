@@ -10,8 +10,8 @@
 <body>
     <header>
         <div class="container">
-            <h1>🤖 Galería de Chatbots</h1>
-            <p>Proyectos de Inteligencia Artificial - Doctorado/Curso 2025</p>
+            <h1>🤖 Galería Chatbase</h1>
+            <p>Interactúa con los agentes sin salir del sitio</p>
         </div>
     </header>
 
@@ -19,20 +19,23 @@
         <div id="grid-projects" class="grid"></div>
     </main>
 
-    <footer>
-        <p>Desarrollado con ❤️ por la clase del Profesor Rodrigo.</p>
-    </footer>
+    <div id="modal-container" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <iframe id="chat-frame" src="" frameborder="0"></iframe>
+        </div>
+    </div>
 
     <script src="students.js"></script>
     <script>
-        // Lógica simple para renderizar las tarjetas
         const grid = document.getElementById('grid-projects');
-        
+        const modal = document.getElementById('modal-container');
+        const iframe = document.getElementById('chat-frame');
+
+        // Generar tarjetas
         students.forEach(student => {
             const card = document.createElement('div');
             card.className = 'card';
-            
-            // Si el alumno no puso imagen, usamos un robot por defecto
             const image = student.image ? student.image : 'https://api.dicebear.com/7.x/bottts/svg?seed=' + student.name;
 
             card.innerHTML = `
@@ -40,18 +43,35 @@
                     <img src="${image}" alt="Avatar">
                     <div>
                         <h3>${student.botName}</h3>
-                        <span class="author">por ${student.name}</span>
+                        <span class="author">${student.name}</span>
                     </div>
                 </div>
                 <div class="card-body">
                     <p>${student.description}</p>
                 </div>
                 <div class="card-footer">
-                    <a href="${student.link}" target="_blank" class="btn">Chatear con el Bot 💬</a>
+                    <button onclick="openModal('${student.embedUrl}')" class="btn">Abrir Chat 💬</button>
                 </div>
             `;
             grid.appendChild(card);
         });
+
+        // Funciones del Modal
+        function openModal(url) {
+            iframe.src = url; // Carga el bot específico
+            modal.style.display = "flex"; // Muestra la ventana
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+            iframe.src = ""; // Limpia el iframe para detener el chat/audio al cerrar
+        }
+
+        // Cerrar si hacen clic fuera del cuadro blanco
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
     </script>
 </body>
-</html>
