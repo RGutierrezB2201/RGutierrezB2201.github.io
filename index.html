@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showcase de IA - Clase 2025</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🤖 Galería de Chatbots</h1>
+            <p>Proyectos de Inteligencia Artificial - Doctorado/Curso 2025</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="grid-projects" class="grid"></div>
+    </main>
+
+    <footer>
+        <p>Desarrollado con ❤️ por la clase del Profesor Rodrigo.</p>
+    </footer>
+
+    <script src="students.js"></script>
+    <script>
+        // Lógica simple para renderizar las tarjetas
+        const grid = document.getElementById('grid-projects');
+        
+        students.forEach(student => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            // Si el alumno no puso imagen, usamos un robot por defecto
+            const image = student.image ? student.image : 'https://api.dicebear.com/7.x/bottts/svg?seed=' + student.name;
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <img src="${image}" alt="Avatar">
+                    <div>
+                        <h3>${student.botName}</h3>
+                        <span class="author">por ${student.name}</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>${student.description}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="${student.link}" target="_blank" class="btn">Chatear con el Bot 💬</a>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
